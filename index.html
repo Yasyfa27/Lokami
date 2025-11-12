@@ -1,0 +1,1828 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Lokami - AI-Integrated Smart Platform Ecosystem for Empowering Local
+      Businesses
+    </title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+            colors: {
+              "lokami-primary": {
+                DEFAULT: "#1B3C73", // UPDATED: Biru Navy (sesuai logo)
+                light: "#2D5F9E", // UPDATED: Biru lebih terang
+                dark: "#11264A", // UPDATED: Biru lebih gelap untuk hover
+              },
+              "lokami-secondary": "#43A047", // UPDATED: Hijau (sesuai aksen logo)
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* Smooth scrolling for page anchors */
+      html {
+        scroll-behavior: smooth;
+      }
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #1b3c73; /* UPDATED: Scrollbar jadi biru */
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #11264a; /* UPDATED: Hover scrollbar */
+      }
+      /* Style for active sidebar link */
+      .sidebar-link.active {
+        background-color: #eff6ff; /* UPDATED: Background biru sangat muda (blue-50) */
+        color: #1b3c73; /* UPDATED: Teks biru */
+        font-weight: 600;
+      }
+      .sidebar-link.active svg {
+        color: #1b3c73; /* UPDATED: Icon biru */
+      }
+      /* Mobile active link */
+      .mobile-nav-link.active {
+        color: #1b3c73; /* UPDATED */
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 font-sans text-gray-800 antialiased">
+    <div
+      id="login-page"
+      class="min-h-screen flex items-center justify-center p-4"
+    >
+      <div
+        class="flex flex-col md:flex-row bg-white shadow-2xl rounded-2xl overflow-hidden max-w-4xl w-full"
+      >
+        <div
+          class="w-full md:w-1/2 bg-lokami-primary text-white p-8 md:p-12 flex flex-col justify-center items-center text-center"
+        >
+          <i data-lucide="sprout" class="w-20 h-20"></i>
+          <h1 class="text-4xl font-bold mt-4">Lokami</h1>
+          <p class="mt-2 text-lg opacity-90" data-key="login_subtitle">
+            AI-Integrated Smart Platform Ecosystem for Empowering Local
+            Businesses
+          </p>
+          <div class="mt-8 w-full max-w-xs">
+            <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden">
+              <img
+                src="https://placehold.co/600x400/1B3C73/FFFFFF?text=Empowering+MSMEs"
+                alt="Lokami Branding"
+                class="object-cover w-full h-full"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+          <div class="flex justify-end mb-4">
+            <select
+              id="lang-switcher-login"
+              class="border border-gray-300 rounded-md p-1 text-sm"
+            >
+              <option value="id" selected>Bahasa Indonesia</option>
+              <option value="en">English</option>
+            </select>
+          </div>
+
+          <h2
+            class="text-3xl font-bold text-lokami-primary"
+            data-key="login_title"
+          >
+            Masuk ke Akun Anda
+          </h2>
+          <p class="text-gray-600 mt-2" data-key="login_welcome">
+            Selamat datang kembali! Silakan masukkan detail Anda.
+          </p>
+
+          <form class="mt-8 space-y-6">
+            <div>
+              <label
+                for="email"
+                class="block text-sm font-medium text-gray-700"
+                data-key="form_email"
+                >Email</label
+              >
+              <input
+                type="email"
+                id="email"
+                value="pengusaha@lokami.id"
+                class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-lokami-primary focus:border-lokami-primary"
+                placeholder="anda@email.com"
+              />
+            </div>
+            <div>
+              <label
+                for="password"
+                class="block text-sm font-medium text-gray-700"
+                data-key="form_password"
+                >Password</label
+              >
+              <input
+                type="password"
+                id="password"
+                value="123456"
+                class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-lokami-primary focus:border-lokami-primary"
+                placeholder="••••••••"
+              />
+            </div>
+
+            <div class="flex items-center justify-between">
+              <div class="flex items-center">
+                <input
+                  id="remember_me"
+                  name="remember_me"
+                  type="checkbox"
+                  class="h-4 w-4 text-lokami-primary focus:ring-lokami-primary border-gray-300 rounded"
+                />
+                <label
+                  for="remember_me"
+                  class="ml-2 block text-sm text-gray-900"
+                  data-key="form_remember"
+                  >Ingat saya</label
+                >
+              </div>
+              <div class="text-sm">
+                <a
+                  href="#"
+                  class="font-medium text-lokami-primary hover:text-lokami-primary-dark"
+                  data-key="form_forgot"
+                  >Lupa password?</a
+                >
+              </div>
+            </div>
+
+            <div>
+              <button
+                type="button"
+                id="login-button"
+                class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-lg font-medium text-white bg-lokami-primary hover:bg-lokami-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lokami-primary transition duration-150 ease-in-out"
+                data-key="form_login_btn"
+              >
+                Masuk
+              </button>
+            </div>
+          </form>
+
+          <p class="mt-6 text-center text-sm text-gray-600">
+            <span data-key="form_no_account">Belum punya akun?</span>
+            <a
+              href="#"
+              class="font-medium text-lokami-primary hover:text-lokami-primary-dark"
+              data-key="form_register"
+            >
+              Daftar Gratis
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div id="app-page" class="hidden h-screen flex">
+      <nav
+        id="sidebar"
+        class="w-64 bg-white shadow-lg flex-col flex-shrink-0 hidden md:flex h-full"
+      >
+        <div class="h-16 flex items-center justify-center px-6 border-b">
+          <a href="https://imgbb.com/"
+            ><img
+              src="https://i.ibb.co.com/GvzSBYK5/Logo-Lokamii-1.png"
+              alt="Logo-Lokamii-1"
+              border="0"
+          /></a>
+        </div>
+
+        <div class="flex-1 overflow-y-auto">
+          <ul class="py-6 px-4 space-y-2">
+            <li>
+              <a
+                href="#dashboard"
+                class="sidebar-link flex items-center px-4 py-3 text-gray-600 hover:bg-gray-100 hover:text-gray-900 rounded-lg transition duration-150 ease-in-out"
+                data-page="page-dashboard"
+              >
+                <i data-lucide="layout-dashboard" class="w-5 h-5 mr-3"></i>
+                <span data-key="nav_dashboard">Dashboard</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#ai-matching"
+                class="sidebar-link flex items-center px-4 py-3 text-gray-600 hover:bg-gray-100 hover:text-gray-900 rounded-lg transition duration-150 ease-in-out"
+                data-page="page-ai-matching"
+              >
+                <i data-lucide="users-round" class="w-5 h-5 mr-3"></i>
+                <span data-key="nav_matching">AI Matching</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#ai-marketing"
+                class="sidebar-link flex items-center px-4 py-3 text-gray-600 hover:bg-gray-100 hover:text-gray-900 rounded-lg transition duration-150 ease-in-out"
+                data-page="page-ai-marketing"
+              >
+                <i data-lucide="sparkles" class="w-5 h-5 mr-3"></i>
+                <span data-key="nav_marketing">AI Marketing</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#smart-dashboard"
+                class="sidebar-link flex items-center px-4 py-3 text-gray-600 hover:bg-gray-100 hover:text-gray-900 rounded-lg transition duration-150 ease-in-out"
+                data-page="page-smart-dashboard"
+              >
+                <i data-lucide="bar-chart-3" class="w-5 h-5 mr-3"></i>
+                <span data-key="nav_analytics">Smart Dashboard</span>
+                <span
+                  class="ml-auto text-xs font-semibold bg-lokami-secondary text-white px-2 py-0.5 rounded-full"
+                  data-key="tag_premium"
+                  >PRO</span
+                >
+              </a>
+            </li>
+            <li>
+              <a
+                href="#community"
+                class="sidebar-link flex items-center px-4 py-3 text-gray-600 hover:bg-gray-100 hover:text-gray-900 rounded-lg transition duration-150 ease-in-out"
+                data-page="page-community"
+              >
+                <i data-lucide="message-square" class="w-5 h-5 mr-3"></i>
+                <span data-key="nav_community">Komunitas</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="p-4 border-t">
+          <button
+            class="w-full flex items-center justify-center py-2 px-4 rounded-lg text-white bg-gradient-to-r from-lokami-secondary to-green-400 hover:from-lokami-secondary hover:to-green-500 shadow-md transition"
+          >
+            <i data-lucide="gem" class="w-4 h-4 mr-2"></i>
+            <span class="font-semibold" data-key="btn_upgrade"
+              >Upgrade ke Pro</span
+            >
+          </button>
+          <a
+            href="#settings"
+            class="sidebar-link flex items-center px-4 py-3 mt-4 text-gray-600 hover:bg-gray-100 hover:text-gray-900 rounded-lg transition duration-150 ease-in-out"
+            data-page="page-settings"
+          >
+            <i data-lucide="settings" class="w-5 h-5 mr-3"></i>
+            <span data-key="nav_settings">Pengaturan</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="flex-1 flex flex-col overflow-hidden">
+        <header
+          class="h-16 bg-white shadow-sm flex-shrink-0 flex items-center justify-between px-4 md:px-8"
+        >
+          <button
+            id="mobile-menu-btn"
+            class="md:hidden text-gray-600 hover:text-lokami-primary"
+          >
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+
+          <div class="relative hidden md:block">
+            <input
+              type="text"
+              class="w-72 pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-lokami-primary"
+              placeholder="Cari mitra, produk..."
+              data-key="search_placeholder"
+            />
+            <div
+              class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+            >
+              <i data-lucide="search" class="w-5 h-5 text-gray-400"></i>
+            </div>
+          </div>
+
+          <div class="flex items-center space-x-4">
+            <select
+              id="lang-switcher-app"
+              class="border border-gray-300 rounded-md p-1 text-sm bg-white focus:outline-none"
+            >
+              <option value="id" selected>ID</option>
+              <option value="en">EN</option>
+            </select>
+
+            <button class="text-gray-600 hover:text-lokami-primary relative">
+              <i data-lucide="bell" class="w-6 h-6"></i>
+              <span
+                class="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"
+              ></span>
+            </button>
+
+            <div class="flex items-center">
+              <img
+                src="https://placehold.co/40x40/E0F2F1/1B3C73?text=A"
+                alt="User Avatar"
+                class="w-10 h-10 rounded-full border-2 border-gray-200"
+              />
+              <div class="ml-3 hidden md:block">
+                <p class="text-sm font-semibold text-gray-800">Kusuma</p>
+                <p class="text-xs text-gray-500">Kusu Coffee</p>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <main
+          class="flex-1 overflow-y-auto p-6 md:p-10 bg-gray-100"
+          id="main-content"
+        >
+          <div id="page-dashboard" class="page-content">
+            <h1
+              class="text-3xl font-bold text-gray-800"
+              data-key="dashboard_welcome"
+            >
+              Selamat Datang, Kusuma!
+            </h1>
+            <p class="mt-1 text-gray-600" data-key="dashboard_subtitle">
+              Rekomendasi teratas untuk Anda hari ini.
+            </p>
+
+            <section class="mt-8">
+              <h2
+                class="text-2xl font-semibold text-gray-700"
+                data-key="dashboard_b2b_title"
+              >
+                Rekomendasi B2B
+              </h2>
+              <div
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4"
+              >
+                <div
+                  class="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300"
+                >
+                  <img
+                    src="https://placehold.co/600x400/D1FAE5/064E3B?text=Biji+Kopi"
+                    alt="Supplier Kopi"
+                    class="w-full h-40 object-cover"
+                  />
+                  <div class="p-5">
+                    <span
+                      class="text-xs font-semibold bg-blue-100 text-blue-800 px-2 py-1 rounded-full"
+                      data-key="tag_supplier"
+                      >Supplier</span
+                    >
+                    <h3 class="text-lg font-bold mt-2">
+                      Pemasok Biji Kopi Robusta
+                    </h3>
+                    <p class="text-sm text-gray-600 mt-1">
+                      Stok 5 ton, siap kirim. Kualitas ekspor.
+                    </p>
+                    <div class="flex items-center mt-3">
+                      <i
+                        data-lucide="check-circle"
+                        class="w-4 h-4 text-green-500"
+                      ></i>
+                      <span
+                        class="ml-1 text-sm text-green-600"
+                        data-key="tag_verified"
+                        >Terverifikasi</span
+                      >
+                    </div>
+                    <button
+                      class="w-full mt-4 py-2 px-4 bg-lokami-primary text-white rounded-lg font-semibold hover:bg-lokami-primary-dark transition"
+                      data-key="btn_connect"
+                    >
+                      Hubungi
+                    </button>
+                  </div>
+                </div>
+                <div
+                  class="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300"
+                >
+                  <img
+                    src="https://placehold.co/600x400/E0E7FF/3730A3?text=Kemasan"
+                    alt="Supplier Kemasan"
+                    class="w-full h-40 object-cover"
+                  />
+                  <div class="p-5">
+                    <span
+                      class="text-xs font-semibold bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full"
+                      data-key="tag_partner"
+                      >Mitra</span
+                    >
+                    <h3 class="text-lg font-bold mt-2">
+                      Pabrik Kemasan Custom
+                    </h3>
+                    <p class="text-sm text-gray-600 mt-1">
+                      Desain & cetak kemasan ramah lingkungan.
+                    </p>
+                    <div class="flex items-center mt-3">
+                      <i
+                        data-lucide="check-circle"
+                        class="w-4 h-4 text-green-500"
+                      ></i>
+                      <span
+                        class="ml-1 text-sm text-green-600"
+                        data-key="tag_verified"
+                        >Terverifikasi</span
+                      >
+                    </div>
+                    <button
+                      class="w-full mt-4 py-2 px-4 bg-lokami-primary text-white rounded-lg font-semibold hover:bg-lokami-primary-dark transition"
+                      data-key="btn_connect"
+                    >
+                      Hubungi
+                    </button>
+                  </div>
+                </div>
+                <div
+                  class="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition duration-300"
+                >
+                  <img
+                    src="https://placehold.co/600x400/FEF3C7/92400E?text=Logistik"
+                    alt="Jasa Logistik"
+                    class="w-full h-40 object-cover"
+                  />
+                  <div class="p-5">
+                    <span
+                      class="text-xs font-semibold bg-amber-100 text-amber-800 px-2 py-1 rounded-full"
+                      data-key="tag_service"
+                      >Jasa</span
+                    >
+                    <h3 class="text-lg font-bold mt-2">Jasa Logistik B2B</h3>
+                    <p class="text-sm text-gray-600 mt-1">
+                      Pengiriman antarkota dengan harga grosir.
+                    </p>
+                    <div class="flex items-center mt-3">
+                      <i data-lucide="shield" class="w-4 h-4 text-gray-400"></i>
+                      <span
+                        class="ml-1 text-sm text-gray-500"
+                        data-key="tag_unverified"
+                        >Belum Verifikasi</span
+                      >
+                    </div>
+                    <button
+                      class="w-full mt-4 py-2 px-4 bg-lokami-primary text-white rounded-lg font-semibold hover:bg-lokami-primary-dark transition"
+                      data-key="btn_connect"
+                    >
+                      Hubungi
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="mt-10">
+              <h2
+                class="text-2xl font-semibold text-gray-700"
+                data-key="dashboard_feed_title"
+              >
+                Feed Populer
+              </h2>
+              <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-4">
+                <div class="lg:col-span-2 bg-white rounded-lg shadow-md p-5">
+                  <div class="flex items-center">
+                    <img
+                      src="https://placehold.co/40x40/DBEAFE/1E40AF?text=D"
+                      alt="Avatar"
+                      class="w-10 h-10 rounded-full"
+                    />
+                    <div class="ml-3">
+                      <p class="text-sm font-semibold">Dinas Koperasi & UMKM</p>
+                      <p class="text-xs text-gray-500">2 jam lalu</p>
+                    </div>
+                    <span
+                      class="ml-auto text-xs font-semibold bg-cyan-100 text-cyan-800 px-2 py-1 rounded-full"
+                      data-key="tag_gov"
+                      >Pemerintah</span
+                    >
+                  </div>
+                  <p class="mt-4 text-gray-700">
+                    <b data-key="feed_b2g_title">Peluang B2G:</b> Dibuka
+                    pendaftaran untuk program kurasi produk UMKM go-digital.
+                    Mitra terpilih akan mendapat pelatihan dan akses pasar.
+                    <a href="#" class="text-lokami-primary font-medium"
+                      >Selengkapnya...</a
+                    >
+                  </p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-5">
+                  <h3
+                    class="font-semibold text-gray-700"
+                    data-key="dashboard_quick_links"
+                  >
+                    Akses Cepat
+                  </h3>
+                  <ul class="mt-3 space-y-2">
+                    <li>
+                      <a
+                        href="#"
+                        class="flex items-center text-lokami-primary hover:underline"
+                        ><i data-lucide="plus-circle" class="w-4 h-4 mr-2"></i
+                        ><span data-key="link_add_product"
+                          >Tambah Produk Baru</span
+                        ></a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        class="flex items-center text-lokami-primary hover:underline"
+                        ><i data-lucide="file-text" class="w-4 h-4 mr-2"></i
+                        ><span data-key="link_view_orders"
+                          >Lihat Pesanan</span
+                        ></a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        class="flex items-center text-lokami-primary hover:underline"
+                        ><i data-lucide="help-circle" class="w-4 h-4 mr-2"></i
+                        ><span data-key="link_help_center"
+                          >Pusat Bantuan</span
+                        ></a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div id="page-ai-matching" class="page-content hidden">
+            <h1
+              class="text-3xl font-bold text-gray-800"
+              data-key="matching_title"
+            >
+              AI Matching System
+            </h1>
+            <p class="mt-1 text-gray-600" data-key="matching_subtitle">
+              Temukan mitra, supplier, dan pelanggan yang paling sesuai untuk
+              bisnis Anda.
+            </p>
+
+            <div class="mt-6 bg-white rounded-lg shadow-md p-5">
+              <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div>
+                  <label
+                    class="text-sm font-medium text-gray-700"
+                    data-key="filter_search"
+                    >Cari</label
+                  >
+                  <input
+                    type="text"
+                    class="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-lokami-primary"
+                    placeholder="Nama usaha, produk..."
+                  />
+                </div>
+                <div>
+                  <label
+                    class="text-sm font-medium text-gray-700"
+                    data-key="filter_category"
+                    >Kategori Mitra</label
+                  >
+                  <select
+                    class="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-lokami-primary"
+                  >
+                    <option>Semua Kategori</option>
+                    <option data-key="tag_supplier">Supplier</option>
+                    <option data-key="tag_partner">Mitra</option>
+                    <option data-key="tag_service">Jasa</option>
+                    <option data-key="tag_gov">Pemerintah (B2G)</option>
+                    <option data-key="tag_customer">Pelanggan (B2C)</option>
+                  </select>
+                </div>
+                <div>
+                  <label
+                    class="text-sm font-medium text-gray-700"
+                    data-key="filter_location"
+                    >Lokasi</label
+                  >
+                  <input
+                    type="text"
+                    class="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-1 focus:ring-lokami-primary"
+                    placeholder="Kota atau Provinsi"
+                  />
+                </div>
+                <div class="flex items-end">
+                  <button
+                    class="w-full py-2 px-4 bg-lokami-primary text-white rounded-lg font-semibold hover:bg-lokami-primary-dark transition flex items-center justify-center"
+                  >
+                    <i data-lucide="search" class="w-4 h-4 mr-2"></i>
+                    <span data-key="btn_find_partner">Cari Mitra</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8">
+              <h2
+                class="text-xl font-semibold text-gray-700"
+                data-key="matching_results"
+              >
+                Hasil yang Paling Cocok (3)
+              </h2>
+              <div class="mt-4 space-y-4">
+                <div
+                  class="bg-white rounded-lg shadow-md p-5 flex flex-col md:flex-row items-start md:items-center"
+                >
+                  <img
+                    src="https://placehold.co/80x80/D1FAE5/064E3B?text=A"
+                    alt="Logo Usaha"
+                    class="w-20 h-20 rounded-lg object-cover"
+                  />
+                  <div class="flex-1 md:ml-5 mt-4 md:mt-0">
+                    <div class="flex items-center justify-between">
+                      <h3 class="text-lg font-bold text-gray-800">
+                        Argonoya Farm
+                      </h3>
+                      <span
+                        class="text-sm font-semibold text-green-600 bg-green-100 px-3 py-1 rounded-full"
+                        data-key="matching_score"
+                        >Skor: 95%</span
+                      >
+                    </div>
+                    <p class="text-sm text-gray-600 mt-1">
+                      Pemasok biji kopi arabika premium dari Bandung. Kapasitas
+                      2 ton/bulan.
+                    </p>
+                    <div class="mt-2 flex items-center space-x-2">
+                      <span
+                        class="text-xs font-medium bg-gray-200 px-2 py-1 rounded"
+                        data-key="tag_supplier"
+                        >Supplier</span
+                      >
+                      <span
+                        class="text-xs font-medium bg-gray-200 px-2 py-1 rounded"
+                        >F&B</span
+                      >
+                      <span
+                        class="text-xs font-medium text-green-700 bg-green-100 px-2 py-1 rounded flex items-center"
+                      >
+                        <i data-lucide="check-circle" class="w-3 h-3 mr-1"></i>
+                        <span data-key="tag_verified">Terverifikasi</span>
+                      </span>
+                    </div>
+                  </div>
+                  <button
+                    class="w-full md:w-auto mt-4 md:mt-0 md:ml-5 py-2 px-6 bg-lokami-primary text-white rounded-lg font-semibold hover:bg-lokami-primary-dark transition"
+                    data-key="btn_connect"
+                  >
+                    Hubungi
+                  </button>
+                </div>
+                <div
+                  class="bg-white rounded-lg shadow-md p-5 flex flex-col md:flex-row items-start md:items-center"
+                >
+                  <img
+                    src="https://placehold.co/80x80/E0E7FF/3730A3?text=B"
+                    alt="Logo Usaha"
+                    class="w-20 h-20 rounded-lg object-cover"
+                  />
+                  <div class="flex-1 md:ml-5 mt-4 md:mt-0">
+                    <div class="flex items-center justify-between">
+                      <h3 class="text-lg font-bold text-gray-800">
+                        Box Kreasia Indonesia
+                      </h3>
+                      <span
+                        class="text-sm font-semibold text-green-600 bg-green-100 px-3 py-1 rounded-full"
+                        data-key="matching_score"
+                        >Skor: 92%</span
+                      >
+                    </div>
+                    <p class="text-sm text-gray-600 mt-1">
+                      Solusi kemasan B2B untuk UMKM. Bahan daur ulang, MOQ
+                      rendah.
+                    </p>
+                    <div class="mt-2 flex items-center space-x-2">
+                      <span
+                        class="text-xs font-medium bg-gray-200 px-2 py-1 rounded"
+                        data-key="tag_partner"
+                        >Mitra</span
+                      >
+                      <span
+                        class="text-xs font-medium bg-gray-200 px-2 py-1 rounded"
+                        >Kemasan</span
+                      >
+                      <span
+                        class="text-xs font-medium text-green-700 bg-green-100 px-2 py-1 rounded flex items-center"
+                      >
+                        <i data-lucide="check-circle" class="w-3 h-3 mr-1"></i>
+                        <span data-key="tag_verified">Terverifikasi</span>
+                      </span>
+                    </div>
+                  </div>
+                  <button
+                    class="w-full md:w-auto mt-4 md:mt-0 md:ml-5 py-2 px-6 bg-lokami-primary text-white rounded-lg font-semibold hover:bg-lokami-primary-dark transition"
+                    data-key="btn_connect"
+                  >
+                    Hubungi
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="page-ai-marketing" class="page-content hidden">
+            <h1
+              class="text-3xl font-bold text-gray-800"
+              data-key="marketing_title"
+            >
+              AI Marketing Assistant
+            </h1>
+            <p class="mt-1 text-gray-600" data-key="marketing_subtitle">
+              Buat deskripsi produk, konten sosial media, dan strategi promo
+              secara otomatis.
+            </p>
+
+            <div class="mt-6 md:flex md:space-x-8">
+              <div class="md:w-1/3 bg-white rounded-lg shadow-md p-6 h-fit">
+                <h3
+                  class="text-lg font-semibold"
+                  data-key="marketing_generator_title"
+                >
+                  Generator Konten
+                </h3>
+
+                <div class="mt-4">
+                  <label
+                    class="text-sm font-medium text-gray-700"
+                    data-key="marketing_product_name"
+                    >Nama Produk</label
+                  >
+                  <input
+                    type="text"
+                    id="product_name"
+                    class="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2"
+                    value="Kopi Robusta Jaya"
+                  />
+                </div>
+                <div class="mt-4">
+                  <label
+                    class="text-sm font-medium text-gray-700"
+                    data-key="marketing_features"
+                    >Fitur / Poin Utama</label
+                  >
+                  <textarea
+                    id="product_features"
+                    class="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2"
+                    rows="3"
+                  >
+100% biji kopi robusta, aroma kuat, sedikit pahit, dari petani lokal</textarea
+                  >
+                </div>
+                <div class="mt-4">
+                  <label
+                    class="text-sm font-medium text-gray-700"
+                    data-key="marketing_type"
+                    >Jenis Konten</label
+                  >
+                  <select
+                    id="content_type"
+                    class="mt-1 block w-full border border-gray-300 rounded-lg px-3 py-2"
+                  >
+                    <option value="desc" data-key="marketing_type_desc">
+                      Deskripsi Produk
+                    </option>
+                    <option value="social" data-key="marketing_type_social">
+                      Postingan Social Media
+                    </option>
+                    <option value="promo" data-key="marketing_type_promo">
+                      Ide Strategi Promo
+                    </option>
+                  </select>
+                </div>
+                <button
+                  id="generate-content-btn"
+                  class="w-full mt-6 py-3 px-4 bg-lokami-primary text-white rounded-lg font-semibold hover:bg-lokami-primary-dark transition flex items-center justify-center"
+                >
+                  <i data-lucide="sparkles" class="w-4 h-4 mr-2"></i>
+                  <span data-key="btn_generate">Buat Konten</span>
+                </button>
+              </div>
+
+              <div class="md:w-2/3 mt-6 md:mt-0">
+                <div
+                  id="marketing-output-container"
+                  class="bg-white rounded-lg shadow-md p-6 min-h-[400px] relative"
+                >
+                  <div class="flex justify-between items-center">
+                    <h3
+                      class="text-lg font-semibold"
+                      data-key="marketing_results_title"
+                    >
+                      Hasil Generasi AI
+                    </h3>
+                    <button
+                      class="text-sm text-gray-500 hover:text-lokami-primary flex items-center"
+                      onclick="copyToClipboard('marketing-output')"
+                    >
+                      <i data-lucide="copy" class="w-4 h-4 mr-1"></i>
+                      <span data-key="btn_copy">Salin</span>
+                    </button>
+                  </div>
+
+                  <div
+                    id="ai-loading-spinner"
+                    class="hidden absolute inset-0 bg-white bg-opacity-75 flex flex-col items-center justify-center rounded-lg"
+                  >
+                    <div
+                      class="w-12 h-12 border-4 border-lokami-primary border-t-transparent rounded-full animate-spin"
+                    ></div>
+                    <p
+                      class="mt-3 font-semibold text-gray-600"
+                      data-key="marketing_loading"
+                    >
+                      AI sedang bekerja...
+                    </p>
+                  </div>
+
+                  <div
+                    id="marketing-output"
+                    class="mt-4 text-gray-700 prose max-w-none"
+                  >
+                    <p
+                      class="text-gray-400 italic"
+                      data-key="marketing_placeholder"
+                    >
+                      Hasil konten Anda akan muncul di sini. Coba masukkan
+                      detail produk dan klik "Buat Konten".
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="page-smart-dashboard" class="page-content hidden">
+            <div class="flex justify-between items-center">
+              <div>
+                <h1
+                  class="text-3xl font-bold text-gray-800"
+                  data-key="analytics_title"
+                >
+                  Smart Business Dashboard
+                </h1>
+                <p class="mt-1 text-gray-600" data-key="analytics_subtitle">
+                  Analisis performa, forecasting, dan insight untuk bisnis Anda.
+                </p>
+              </div>
+              <span
+                class="text-lg font-bold text-lokami-secondary"
+                data-key="tag_premium"
+                >FITUR PRO</span
+              >
+            </div>
+
+            <div
+              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6"
+            >
+              <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex justify-between items-start">
+                  <p
+                    class="text-sm font-medium text-gray-500"
+                    data-key="kpi_sales"
+                  >
+                    Total Penjualan
+                  </p>
+                  <i
+                    data-lucide="dollar-sign"
+                    class="w-5 h-5 text-gray-400"
+                  ></i>
+                </div>
+                <p class="text-3xl font-bold text-gray-800 mt-2">
+                  Rp 27.500.000
+                </p>
+                <p class="text-sm text-green-500 flex items-center mt-1">
+                  <i data-lucide="trending-up" class="w-4 h-4 mr-1"></i>
+                  +15%
+                  <span class="text-gray-500 ml-1" data-key="kpi_vs_last_month"
+                    >vs bln lalu</span
+                  >
+                </p>
+              </div>
+              <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex justify-between items-start">
+                  <p
+                    class="text-sm font-medium text-gray-500"
+                    data-key="kpi_transactions"
+                  >
+                    Total Transaksi
+                  </p>
+                  <i
+                    data-lucide="shopping-cart"
+                    class="w-5 h-5 text-gray-400"
+                  ></i>
+                </div>
+                <p class="text-3xl font-bold text-gray-800 mt-2">128</p>
+                <p class="text-sm text-green-500 flex items-center mt-1">
+                  <i data-lucide="trending-up" class="w-4 h-4 mr-1"></i>
+                  +12
+                  <span class="text-gray-500 ml-1" data-key="kpi_vs_last_month"
+                    >vs bln lalu</span
+                  >
+                </p>
+              </div>
+              <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex justify-between items-start">
+                  <p
+                    class="text-sm font-medium text-gray-500"
+                    data-key="kpi_profit_margin"
+                  >
+                    Margin Profit
+                  </p>
+                  <i data-lucide="percent" class="w-5 h-5 text-gray-400"></i>
+                </div>
+                <p class="text-3xl font-bold text-gray-800 mt-2">20%</p>
+                <p class="text-sm text-red-500 flex items-center mt-1">
+                  <i data-lucide="trending-down" class="w-4 h-4 mr-1"></i>
+                  -2%
+                  <span class="text-gray-500 ml-1" data-key="kpi_vs_last_month"
+                    >vs bln lalu</span
+                  >
+                </p>
+              </div>
+              <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex justify-between items-start">
+                  <p
+                    class="text-sm font-medium text-gray-500"
+                    data-key="kpi_growth"
+                  >
+                    Pertumbuhan
+                  </p>
+                  <i
+                    data-lucide="arrow-up-right"
+                    class="w-5 h-5 text-gray-400"
+                  ></i>
+                </div>
+                <p class="text-3xl font-bold text-gray-800 mt-2">18%</p>
+                <p class="text-sm text-gray-500 flex items-center mt-1">
+                  <span data-key="kpi_yoy">Year-on-Year</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+              <div class="lg:col-span-2 bg-white rounded-lg shadow-md p-6">
+                <h3
+                  class="text-lg font-semibold text-gray-700"
+                  data-key="chart_sales_trend"
+                >
+                  Tren Penjualan (6 Bulan)
+                </h3>
+                <div
+                  class="mt-4 h-72 flex items-center justify-center bg-gray-50 rounded"
+                >
+                  <svg
+                    class="w-full h-full"
+                    viewBox="0 0 400 200"
+                    preserveAspectRatio="xMidYMid meet"
+                  >
+                    <path
+                      d="M 20 180 Q 80 40, 140 120 T 260 100 T 380 20"
+                      stroke="#1B3C73"
+                      fill="none"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                    />
+                    <text
+                      x="20"
+                      y="195"
+                      font-family="Inter"
+                      font-size="10"
+                      fill="#6b7280"
+                    >
+                      Jun
+                    </text>
+                    <text
+                      x="130"
+                      y="195"
+                      font-family="Inter"
+                      font-size="10"
+                      fill="#6b7280"
+                    >
+                      Aug
+                    </text>
+                    <text
+                      x="250"
+                      y="195"
+                      font-family="Inter"
+                      font-size="10"
+                      fill="#6b7280"
+                    >
+                      Oct
+                    </text>
+                    <text
+                      x="370"
+                      y="195"
+                      font-family="Inter"
+                      font-size="10"
+                      fill="#6b7280"
+                    >
+                      Dec
+                    </text>
+                    <line
+                      x1="20"
+                      y1="185"
+                      x2="380"
+                      y2="185"
+                      stroke="#e5e7eb"
+                      stroke-width="1"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <div class="bg-white rounded-lg shadow-md p-6">
+                <h3
+                  class="text-lg font-semibold text-gray-700"
+                  data-key="chart_strategy"
+                >
+                  Efektivitas Strategi
+                </h3>
+                <div
+                  class="mt-4 h-72 flex items-center justify-center relative"
+                >
+                  <svg class="w-48 h-48" viewBox="0 0 100 100">
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      fill="transparent"
+                      stroke="#43A047"
+                      stroke-width="15"
+                      stroke-dasharray="150.79 251.32"
+                      transform="rotate(-90 50 50)"
+                    />
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      fill="transparent"
+                      stroke="#2D5F9E"
+                      stroke-width="15"
+                      stroke-dasharray="75.39 251.32"
+                      transform="rotate(126 50 50)"
+                    />
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      fill="transparent"
+                      stroke="#1B3C73"
+                      stroke-width="15"
+                      stroke-dasharray="25.13 251.32"
+                      transform="rotate(234 50 50)"
+                    />
+                  </svg>
+                  <div
+                    class="absolute flex flex-col items-center justify-center"
+                  >
+                    <span class="text-2xl font-bold text-gray-800">1.2k</span>
+                    <span class="text-sm text-gray-500" data-key="chart_leads"
+                      >Leads</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-white rounded-lg shadow-md p-6 mt-6 border-l-4 border-lokami-primary"
+            >
+              <div class="flex">
+                <i
+                  data-lucide="lightbulb"
+                  class="w-6 h-6 text-lokami-primary flex-shrink-0"
+                ></i>
+                <div class="ml-4">
+                  <h3
+                    class="text-lg font-semibold text-gray-700"
+                    data-key="insight_title"
+                  >
+                    AI Business Insight
+                  </h3>
+                  <p class="mt-2 text-gray-600" data-key="insight_text">
+                    Penjualan Anda menurun 2% di bulan November. AI kami
+                    mendeteksi ini karena penurunan repeat order dari pelanggan
+                    B2B. Rekomendasi: Tawarkan promo "Beli 2 Gratis 1" untuk
+                    supplier kopi Anda minggu depan untuk meningkatkan retensi.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="page-community" class="page-content hidden">
+            <h1
+              class="text-3xl font-bold text-gray-800"
+              data-key="community_title"
+            >
+              Community Hub
+            </h1>
+            <p class="mt-1 text-gray-600" data-key="community_subtitle">
+              Terhubung, berkolaborasi, dan tumbuh bersama komunitas UMKM.
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+              <div class="lg:col-span-2 space-y-5">
+                <div class="bg-white rounded-lg shadow-md p-5">
+                  <div class="flex items-center">
+                    <img
+                      src="https://placehold.co/40x40/E0F2F1/1B3C73?text=A"
+                      alt="User Avatar"
+                      class="w-10 h-10 rounded-full"
+                    />
+                    <input
+                      type="text"
+                      class="ml-3 w-full bg-gray-100 rounded-full px-4 py-3"
+                      placeholder="Tulis postingan atau ajukan pertanyaan..."
+                      data-key="community_post_placeholder"
+                    />
+                  </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-5">
+                  <div class="flex items-center">
+                    <img
+                      src="https://placehold.co/40x40/E0F2F1/1B3C73?text=R"
+                      alt="Avatar"
+                      class="w-10 h-10 rounded-full"
+                    />
+                    <div class="ml-3">
+                      <p class="text-sm font-semibold">Rina (Griya Batik)</p>
+                      <p class="text-xs text-gray-500">45 menit lalu</p>
+                    </div>
+                  </div>
+                  <p class="mt-4 text-gray-700">
+                    Halo semua! Saya sedang mencari supplier kain katun
+                    primisima berkualitas di area Yogyakarta. Adakah yang punya
+                    rekomendasi terverifikasi dari Lokami? Terima kasih!
+                  </p>
+                  <div
+                    class="flex justify-between items-center mt-4 pt-3 border-t"
+                  >
+                    <button
+                      class="flex items-center text-gray-500 hover:text-lokami-primary"
+                    >
+                      <i data-lucide="thumbs-up" class="w-4 h-4 mr-1"></i> 12
+                    </button>
+                    <button
+                      class="flex items-center text-gray-500 hover:text-lokami-primary"
+                    >
+                      <i data-lucide="message-circle" class="w-4 h-4 mr-1"></i>
+                      3
+                    </button>
+                    <button
+                      class="flex items-center text-gray-500 hover:text-lokami-primary"
+                    >
+                      <i data-lucide="share-2" class="w-4 h-4 mr-1"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-5">
+                  <div class="flex items-center">
+                    <img
+                      src="https://placehold.co/40x40/DBEAFE/1E40AF?text=D"
+                      alt="Avatar"
+                      class="w-10 h-10 rounded-full"
+                    />
+                    <div class="ml-3">
+                      <p class="text-sm font-semibold">Dinas Koperasi & UMKM</p>
+                      <p class="text-xs text-gray-500">2 jam lalu</p>
+                    </div>
+                    <span
+                      class="ml-auto text-xs font-semibold bg-cyan-100 text-cyan-800 px-2 py-1 rounded-full"
+                      data-key="tag_gov"
+                      >Pemerintah</span
+                    >
+                  </div>
+                  <p class="mt-4 text-gray-700">
+                    <b data-key="feed_b2g_title">Peluang B2G:</b> Dibuka
+                    pendaftaran untuk program kurasi produk UMKM go-digital.
+                    Mitra terpilih akan mendapat pelatihan dan akses pasar.
+                    <a href="#" class="text-lokami-primary font-medium"
+                      >Selengkapnya...</a
+                    >
+                  </p>
+                </div>
+              </div>
+
+              <div class="lg:col-span-1 space-y-5">
+                <div class="bg-white rounded-lg shadow-md p-5">
+                  <h3
+                    class="font-semibold text-gray-700"
+                    data-key="community_groups"
+                  >
+                    Grup Anda
+                  </h3>
+                  <ul class="mt-3 space-y-2">
+                    <li>
+                      <a
+                        href="#"
+                        class="flex items-center text-gray-700 hover:text-lokami-primary"
+                        ><i
+                          data-lucide="coffee"
+                          class="w-5 h-5 mr-2 text-lokami-primary"
+                        ></i
+                        >Komunitas Kopi Nusantara</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        class="flex items-center text-gray-700 hover:text-lokami-primary"
+                        ><i
+                          data-lucide="shirt"
+                          class="w-5 h-5 mr-2 text-lokami-primary"
+                        ></i
+                        >Paguyuban Fashion Lokal</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-5">
+                  <h3
+                    class="font-semibold text-gray-700"
+                    data-key="community_events"
+                  >
+                    Acara Mendatang
+                  </h3>
+                  <ul class="mt-3 space-y-2">
+                    <li>
+                      <p class="font-medium text-gray-800">
+                        Workshop Pemasaran Digital
+                      </p>
+                      <p class="text-sm text-gray-500">15 Des 2025 - Online</p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="page-settings" class="page-content hidden">
+            <h1
+              class="text-3xl font-bold text-gray-800"
+              data-key="nav_settings"
+            >
+              Pengaturan
+            </h1>
+            <p class="mt-1 text-gray-600" data-key="settings_subtitle">
+              Kelola profil, akun, dan preferensi Anda.
+            </p>
+
+            <div class="mt-6 bg-white rounded-lg shadow-md p-6">
+              <h2 class="text-xl font-semibold">Profil Bisnis</h2>
+              <p class="mt-2 text-gray-600">
+                ... (Form untuk mengedit profil bisnis akan ada di sini)
+              </p>
+
+              <h2 class="text-xl font-semibold mt-8">Langganan</h2>
+              <p class="mt-2 text-gray-600">
+                Anda saat ini menggunakan paket
+                <span class="font-bold text-lokami-primary">Freemium</span>.
+              </p>
+              <button
+                class="mt-3 py-2 px-4 bg-lokami-secondary text-white rounded-lg font-semibold hover:bg-green-600 transition"
+                data-key="btn_upgrade"
+              >
+                Upgrade ke Pro
+              </button>
+            </div>
+          </div>
+        </main>
+      </div>
+
+      <nav
+        id="mobile-nav"
+        class="md:hidden fixed bottom-0 left-0 right-0 bg-white shadow-[0_-2px_10px_rgba(0,0,0,0.05)] flex justify-around p-2 z-50"
+      >
+        <a
+          href="#dashboard"
+          class="mobile-nav-link flex flex-col items-center justify-center p-2"
+          data-page="page-dashboard"
+        >
+          <i data-lucide="layout-dashboard" class="w-6 h-6"></i>
+          <span class="text-xs" data-key="nav_dashboard">Dashboard</span>
+        </a>
+        <a
+          href="#ai-matching"
+          class="mobile-nav-link flex flex-col items-center justify-center p-2 text-gray-500"
+          data-page="page-ai-matching"
+        >
+          <i data-lucide="users-round" class="w-6 h-6"></i>
+          <span class="text-xs" data-key="nav_matching">Matching</span>
+        </a>
+        <a
+          href="#ai-marketing"
+          class="mobile-nav-link flex flex-col items-center justify-center p-2 text-gray-500"
+          data-page="page-ai-marketing"
+        >
+          <i data-lucide="sparkles" class="w-6 h-6"></i>
+          <span class="text-xs" data-key="nav_marketing">AI Marketing</span>
+        </a>
+        <a
+          href="#smart-dashboard"
+          class="mobile-nav-link flex flex-col items-center justify-center p-2 text-gray-500"
+          data-page="page-smart-dashboard"
+        >
+          <i data-lucide="bar-chart-3" class="w-6 h-6"></i>
+          <span class="text-xs" data-key="nav_analytics">Analisis</span>
+        </a>
+        <a
+          href="#community"
+          class="mobile-nav-link flex flex-col items-center justify-center p-2 text-gray-500"
+          data-page="page-community"
+        >
+          <i data-lucide="message-square" class="w-6 h-6"></i>
+          <span class="text-xs" data-key="nav_community">Komunitas</span>
+        </a>
+      </nav>
+
+      <div
+        id="mobile-sidebar-overlay"
+        class="md:hidden fixed inset-0 bg-black bg-opacity-50 z-50 hidden"
+      ></div>
+      <div
+        id="mobile-sidebar"
+        class="md:hidden fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 transform -translate-x-full transition duration-300 ease-in-out"
+      ></div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- State and Selectors ---
+        const loginPage = document.getElementById("login-page");
+        const appPage = document.getElementById("app-page");
+        const loginButton = document.getElementById("login-button");
+        const mainContent = document.getElementById("main-content");
+        const pageContents = document.querySelectorAll(".page-content");
+        const sidebarLinks = document.querySelectorAll(".sidebar-link");
+        const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+        const langSwitchers = document.querySelectorAll(
+          "#lang-switcher-login, #lang-switcher-app"
+        );
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+        const mobileSidebar = document.getElementById("mobile-sidebar");
+        const mobileSidebarOverlay = document.getElementById(
+          "mobile-sidebar-overlay"
+        );
+
+        // AI Marketing Page
+        const generateBtn = document.getElementById("generate-content-btn");
+        const marketingOutput = document.getElementById("marketing-output");
+        const loadingSpinner = document.getElementById("ai-loading-spinner");
+
+        let currentLang = "id";
+        let currentPage = "page-dashboard";
+
+        // --- Internationalization (i18n) ---
+        const translations = {
+          id: {
+            login_title: "Masuk ke Akun Anda",
+            login_subtitle:
+              "AI-Integrated Smart Platform Ecosystem for Empowering Local Businesses",
+            login_welcome:
+              "Selamat datang kembali! Silakan masukkan detail Anda.",
+            form_email: "Email",
+            form_password: "Password",
+            form_remember: "Ingat saya",
+            form_forgot: "Lupa password?",
+            form_login_btn: "Masuk",
+            form_no_account: "Belum punya akun?",
+            form_register: "Daftar Gratis",
+            search_placeholder: "Cari mitra, produk...",
+            nav_dashboard: "Dashboard",
+            nav_matching: "AI Matching",
+            nav_marketing: "AI Marketing",
+            nav_analytics: "Smart Dashboard",
+            nav_community: "Komunitas",
+            nav_settings: "Pengaturan",
+            tag_premium: "PRO",
+            btn_upgrade: "Upgrade ke Pro",
+            dashboard_welcome: "Selamat Datang, Kusuma!",
+            dashboard_subtitle: "Rekomendasi teratas untuk Anda hari ini.",
+            dashboard_b2b_title: "Rekomendasi B2B",
+            tag_supplier: "Supplier",
+            tag_partner: "Mitra",
+            tag_service: "Jasa",
+            tag_gov: "Pemerintah",
+            tag_customer: "Pelanggan",
+            tag_verified: "Terverifikasi",
+            tag_unverified: "Belum Verifikasi",
+            btn_connect: "Hubungi",
+            dashboard_feed_title: "Feed Populer",
+            feed_b2g_title: "Peluang B2G:",
+            dashboard_quick_links: "Akses Cepat",
+            link_add_product: "Tambah Produk Baru",
+            link_view_orders: "Lihat Pesanan",
+            link_help_center: "Pusat Bantuan",
+            matching_title: "AI Matching System",
+            matching_subtitle:
+              "Temukan mitra, supplier, dan pelanggan yang paling sesuai untuk bisnis Anda.",
+            filter_search: "Cari",
+            filter_category: "Kategori Mitra",
+            filter_location: "Lokasi",
+            btn_find_partner: "Cari Mitra",
+            matching_results: "Hasil yang Paling Cocok",
+            matching_score: "Skor",
+            marketing_title: "AI Marketing Assistant",
+            marketing_subtitle:
+              "Buat deskripsi produk, konten sosial media, dan strategi promo secara otomatis.",
+            marketing_generator_title: "Generator Konten",
+            marketing_product_name: "Nama Produk",
+            marketing_features: "Fitur / Poin Utama",
+            marketing_type: "Jenis Konten",
+            marketing_type_desc: "Deskripsi Produk",
+            marketing_type_social: "Postingan Social Media",
+            marketing_type_promo: "Ide Strategi Promo",
+            btn_generate: "Buat Konten",
+            marketing_results_title: "Hasil Generasi AI",
+            btn_copy: "Salin",
+            marketing_loading: "AI sedang bekerja...",
+            marketing_placeholder:
+              'Hasil konten Anda akan muncul di sini. Coba masukkan detail produk dan klik "Buat Konten".',
+            analytics_title: "Smart Business Dashboard",
+            analytics_subtitle:
+              "Analisis performa, forecasting, dan insight untuk bisnis Anda.",
+            kpi_sales: "Total Penjualan",
+            kpi_transactions: "Total Transaksi",
+            kpi_profit_margin: "Margin Profit",
+            kpi_growth: "Pertumbuhan",
+            kpi_vs_last_month: "vs bln lalu",
+            kpi_yoy: "Year-on-Year",
+            chart_sales_trend: "Tren Penjualan (6 Bulan)",
+            chart_strategy: "Efektivitas Strategi",
+            chart_leads: "Leads",
+            insight_title: "AI Business Insight",
+            insight_text:
+              'Penjualan Anda menurun 2% di bulan November. AI kami mendeteksi ini karena penurunan repeat order dari pelanggan B2B. <b class="text-gray-800">Rekomendasi:</b> Tawarkan promo "Beli 2 Gratis 1" untuk supplier kopi Anda minggu depan untuk meningkatkan retensi.',
+            community_title: "Community Hub",
+            community_subtitle:
+              "Terhubung, berkolaborasi, dan tumbuh bersama komunitas UMKM.",
+            community_post_placeholder:
+              "Tulis postingan atau ajukan pertanyaan...",
+            community_groups: "Grup Anda",
+            community_events: "Acara Mendatang",
+            settings_subtitle: "Kelola profil, akun, dan preferensi Anda.",
+          },
+          en: {
+            login_title: "Login to Your Account",
+            login_subtitle:
+              "Digital Gateway for Local Communities & Industries",
+            login_welcome: "Welcome back! Please enter your details.",
+            form_email: "Email",
+            form_password: "Password",
+            form_remember: "Remember me",
+            form_forgot: "Forgot password?",
+            form_login_btn: "Login",
+            form_no_account: "Don't have an account?",
+            form_register: "Sign Up for Free",
+            search_placeholder: "Search partners, products...",
+            nav_dashboard: "Dashboard",
+            nav_matching: "AI Matching",
+            nav_marketing: "AI Marketing",
+            nav_analytics: "Smart Dashboard",
+            nav_community: "Community",
+            nav_settings: "Settings",
+            tag_premium: "PRO",
+            btn_upgrade: "Upgrade to Pro",
+            dashboard_welcome: "Welcome, Budi!",
+            dashboard_subtitle: "Top recommendations for you today.",
+            dashboard_b2b_title: "B2B Recommendations",
+            tag_supplier: "Supplier",
+            tag_partner: "Partner",
+            tag_service: "Service",
+            tag_gov: "Government",
+            tag_customer: "Customer",
+            tag_verified: "Verified",
+            tag_unverified: "Unverified",
+            btn_connect: "Connect",
+            dashboard_feed_title: "Popular Feed",
+            feed_b2g_title: "B2G Opportunity:",
+            dashboard_quick_links: "Quick Links",
+            link_add_product: "Add New Product",
+            link_view_orders: "View Orders",
+            link_help_center: "Help Center",
+            matching_title: "AI Matching System",
+            matching_subtitle:
+              "Find the most compatible partners, suppliers, and customers for your business.",
+            filter_search: "Search",
+            filter_category: "Partner Category",
+            filter_location: "Location",
+            btn_find_partner: "Find Partner",
+            matching_results: "Best Matches",
+            matching_score: "Score",
+            marketing_title: "AI Marketing Assistant",
+            marketing_subtitle:
+              "Automatically generate product descriptions, social media content, and promo strategies.",
+            marketing_generator_title: "Content Generator",
+            marketing_product_name: "Product Name",
+            marketing_features: "Key Features / Points",
+            marketing_type: "Content Type",
+            marketing_type_desc: "Product Description",
+            marketing_type_social: "Social Media Post",
+            marketing_type_promo: "Promo Strategy Idea",
+            btn_generate: "Generate Content",
+            marketing_results_title: "AI Generated Results",
+            btn_copy: "Copy",
+            marketing_loading: "AI is working...",
+            marketing_placeholder:
+              'Your generated content will appear here. Try entering product details and click "Generate Content".',
+            analytics_title: "Smart Business Dashboard",
+            analytics_subtitle:
+              "Performance analysis, forecasting, and insights for your business.",
+            kpi_sales: "Total Sales",
+            kpi_transactions: "Total Transactions",
+            kpi_profit_margin: "Profit Margin",
+            kpi_growth: "Growth",
+            kpi_vs_last_month: "vs last month",
+            kpi_yoy: "Year-on-Year",
+            chart_sales_trend: "Sales Trend (6 Months)",
+            chart_strategy: "Strategy Effectiveness",
+            chart_leads: "Leads",
+            insight_title: "AI Business Insight",
+            insight_text:
+              'Your sales decreased by 2% in November. Our AI detected this is due to a drop in repeat orders from B2B customers. <b class="text-gray-800">Recommendation:</b> Offer a "Buy 2 Get 1 Free" promo for your coffee suppliers next week to increase retention.',
+            community_title: "Community Hub",
+            community_subtitle:
+              "Connect, collaborate, and grow with the MSME community.",
+            community_post_placeholder: "Write a post or ask a question...",
+            community_groups: "Your Groups",
+            community_events: "Upcoming Events",
+            settings_subtitle: "Manage your profile, account, and preferences.",
+          },
+        };
+
+        function changeLanguage(lang) {
+          if (!translations[lang]) return;
+          currentLang = lang;
+          document.documentElement.lang = lang;
+
+          // Update all text elements
+          document.querySelectorAll("[data-key]").forEach((el) => {
+            const key = el.getAttribute("data-key");
+            if (translations[lang][key]) {
+              el.textContent = translations[lang][key];
+            }
+          });
+
+          // Update placeholders
+          document
+            .querySelectorAll(
+              '[data-key^="search_placeholder"], [data-key^="community_post_placeholder"]'
+            )
+            .forEach((el) => {
+              const key = el.getAttribute("data-key");
+              if (translations[lang][key]) {
+                el.placeholder = translations[lang][key];
+              }
+            });
+
+          // Sync other switcher
+          langSwitchers.forEach((switcher) => (switcher.value = lang));
+        }
+
+        // --- Page Navigation ---
+        function showPage(pageId) {
+          if (!pageId) return;
+
+          // Hide all pages
+          pageContents.forEach((page) => page.classList.add("hidden"));
+
+          // Show selected page
+          const newPage = document.getElementById(pageId);
+          if (newPage) {
+            newPage.classList.remove("hidden");
+            currentPage = pageId;
+            mainContent.scrollTop = 0; // Scroll to top
+          }
+
+          // Update active links
+          updateActiveLinks(pageId);
+
+          // Close mobile sidebar
+          hideMobileSidebar();
+        }
+
+        function updateActiveLinks(pageId) {
+          const activeSelector = `[data-page="${pageId}"]`;
+
+          // Desktop Sidebar
+          sidebarLinks.forEach((link) => {
+            link.classList.remove("active");
+            if (link.matches(activeSelector)) {
+              link.classList.add("active");
+            }
+          });
+
+          // Mobile Nav
+          mobileNavLinks.forEach((link) => {
+            link.classList.remove("active", "text-lokami-primary");
+            link.classList.add("text-gray-500");
+            if (link.matches(activeSelector)) {
+              link.classList.remove("text-gray-500");
+              link.classList.add("active", "text-lokami-primary");
+            }
+          });
+        }
+
+        // --- Mobile Menu Logic ---
+        function cloneSidebarForMobile() {
+          const sidebarContent = document.getElementById("sidebar").innerHTML;
+          mobileSidebar.innerHTML = sidebarContent;
+          // Re-attach listeners to cloned links
+          mobileSidebar.querySelectorAll(".sidebar-link").forEach((link) => {
+            link.addEventListener("click", (e) => {
+              e.preventDefault();
+              showPage(link.dataset.page);
+            });
+          });
+        }
+
+        function showMobileSidebar() {
+          mobileSidebarOverlay.classList.remove("hidden");
+          mobileSidebar.classList.remove("-translate-x-full");
+        }
+
+        function hideMobileSidebar() {
+          mobileSidebarOverlay.classList.add("hidden");
+          mobileSidebar.classList.add("-translate-x-full");
+        }
+
+        // --- AI Marketing Logic ---
+        function simulateAIGeneration() {
+          loadingSpinner.classList.remove("hidden");
+          marketingOutput.innerHTML = "";
+
+          setTimeout(() => {
+            const productName =
+              document.getElementById("product_name").value || "Produk";
+            const features =
+              document.getElementById("product_features").value || "fitur";
+            const contentType = document.getElementById("content_type").value;
+
+            let resultText = "";
+
+            if (contentType === "desc") {
+              resultText = `
+                                    <h4 class="font-bold text-lg" data-key-dyn="true">Deskripsi Produk: ${productName}</h4>
+                                    <p data-key-dyn="true">Nikmati cita rasa otentik dari <strong>${productName}</strong>! Dibuat dari ${
+                features.split(",")[0]
+              }, kopi ini menawarkan pengalaman unik dengan ${
+                features.split(",")[1]
+              } dan ${
+                features.split(",")[2]
+              }. Sempurna untuk memulai hari Anda atau sebagai teman bersantai. Dapatkan produk berkualitas dari ${
+                features.split(",")[3]
+              } dan dukung industri lokal.</p>
+                                    <ul class="list-disc list-inside mt-2" data-key-dyn="true">
+                                        <li>100% Original</li>
+                                        <li>Aroma Kuat & Khas</li>
+                                        <li>Ditanam oleh Petani Lokal</li>
+                                    </ul>
+                                `;
+            } else if (contentType === "social") {
+              resultText = `
+                                    <h4 class="font-bold text-lg" data-key-dyn="true">Postingan Instagram:</h4>
+                                    <p data-key-dyn="true">Pagi jadi lebih semangat dengan secangkir <strong>${productName}</strong>! ☕✨<br><br>Dibuat dari ${features}, kopi ini punya ${
+                features.split(",")[1]
+              } yang bikin melek! Siapa bilang produk lokal kalah keren? 😉<br><br>#${productName.replace(
+                /\s/g,
+                ""
+              )} #KopiLokal #UMKMNaikKelas #ProdukIndonesia</p>
+                                `;
+            } else {
+              resultText = `
+                                    <h4 class="font-bold text-lg" data-key-dyn="true">Ide Strategi Promo:</h4>
+                                    <ol class="list-decimal list-inside mt-2" data-key-dyn="true">
+                                        <li><strong>Promo Bundling:</strong> Tawarkan paket ${productName} dengan cemilan lokal (misal: keripik singkong) dengan harga spesial.</li>
+                                        <li><strong>Flash Sale Medsos:</strong> Adakan flash sale 1 jam di Instagram Stories untuk pembelian ${productName}.</li>
+                                        <li><strong>Kolaborasi B2B:</strong> Tawarkan ${productName} ke kafe-kafe lokal via AI Matching Lokami dengan harga grosir khusus.</li>
+                                    </ol>
+                                `;
+            }
+
+            marketingOutput.innerHTML = resultText;
+            loadingSpinner.classList.add("hidden");
+
+            // Re-translate dynamic content if necessary
+            if (currentLang !== "id") {
+              marketingOutput
+                .querySelectorAll("[data-key-dyn]")
+                .forEach((el) => {
+                  el.textContent = `[${currentLang.toUpperCase()}] ${
+                    el.textContent
+                  } (Dynamic content mock-up)`;
+                });
+            }
+          }, 2000); // Simulate 2-second AI thinking time
+        }
+
+        // --- Event Listeners ---
+
+        // 1. Login
+        loginButton.addEventListener("click", () => {
+          loginPage.classList.add("hidden");
+          appPage.classList.remove("hidden");
+
+          // IMPORTANT: Initialize Lucide icons *after* the app page is visible
+          lucide.createIcons();
+
+          // Clone sidebar for mobile
+          cloneSidebarForMobile();
+
+          // Set initial page and language
+          showPage(currentPage);
+          changeLanguage(currentLang);
+        });
+
+        // 2. Language Switch
+        langSwitchers.forEach((switcher) => {
+          switcher.addEventListener("change", (e) => {
+            changeLanguage(e.target.value);
+          });
+        });
+
+        // 3. Page Navigation (Desktop & Mobile)
+        const navLinks = [...sidebarLinks, ...mobileNavLinks];
+        navLinks.forEach((link) => {
+          link.addEventListener("click", (e) => {
+            e.preventDefault();
+            showPage(link.dataset.page);
+          });
+        });
+
+        // 4. Mobile Menu Toggle
+        mobileMenuBtn.addEventListener("click", showMobileSidebar);
+        mobileSidebarOverlay.addEventListener("click", hideMobileSidebar);
+
+        // 5. AI Marketing Button
+        generateBtn.addEventListener("click", simulateAIGeneration);
+      }); // End DOMContentLoaded
+
+      // --- Utility Functions ---
+
+      /**
+       * Copies text from a given element ID to the clipboard.
+       * Uses document.execCommand for iFrame compatibility.
+       */
+      function copyToClipboard(elementId) {
+        try {
+          const element = document.getElementById(elementId);
+          const textToCopy = element.innerText || element.textContent;
+
+          const tempTextarea = document.createElement("textarea");
+          tempTextarea.value = textToCopy;
+          document.body.appendChild(tempTextarea);
+          tempTextarea.select();
+          document.execCommand("copy");
+          document.body.removeChild(tempTextarea);
+
+          // Show a simple "copied" message
+          const copyButton = document.querySelector(
+            `[onclick="copyToClipboard('${elementId}')"]`
+          );
+          if (copyButton) {
+            const originalText = copyButton.innerHTML;
+            copyButton.innerHTML = `<i data-lucide="check" class="w-4 h-4 mr-1 text-green-500"></i> Tersalin!`;
+            lucide.createIcons(); // Re-render the new icon
+            setTimeout(() => {
+              copyButton.innerHTML = originalText;
+              lucide.createIcons(); // Re-render the original icon
+            }, 2000);
+          }
+        } catch (err) {
+          console.error("Failed to copy text: ", err);
+        }
+      }
+    </script>
+  </body>
+</html>
